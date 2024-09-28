@@ -1,0 +1,43 @@
+* {
+	font-family: 'Hack Nerd Font';
+}
+
+.module {
+	background-color: @theme_base_color;
+	padding: 0 10px;
+	border-radius: 7px;
+	color: @theme_text_color;
+}
+
+box.horizontal:dir(ltr) {
+	padding: 1 10px;
+}
+
+window#waybar {
+	background: @theme_bg_color;
+}
+
+/* Left-modules */
+#workspaces {
+	padding: 0 0px;
+}
+
+#workspaces button {
+	padding: 0 5px;
+	background-color: transparent;
+}
+
+#workspaces button.visible {
+	/*lightens the text color by 60%*/
+	color: shade(@theme_text_color, 1.6);
+}
+
+/* Right modules */
+#system-options {
+	padding: 0;
+}
+
+
+
+
+

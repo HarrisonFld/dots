@@ -1,0 +1,97 @@
+// Waybar configuration for dotfiles 
+// requires font-awesome
+
+{
+	"mode": "dock",
+	"spacing": 10,
+	"modules-left": [
+		"sway/workspaces", 
+		"tray"
+	],
+	"modules-center": ["sway/mode"],
+	"modules-right": [
+		"bluetooth", 
+		"wireplumber", 
+		"network", 
+		"cpu", 
+		"memory", 
+		"clock",
+		"group/system-options"
+	],
+
+	// Modules-left
+	"sway/workspaces": {
+		"format": "{name}"
+	},
+	"tray": {
+		"format": "{}",
+		"spacing": 20
+	},
+
+	// Modules-center
+	"sway/mode": {
+		"format": "{}"
+	},
+
+	// Modules-right
+	"bluetooth": {
+		"format": "{}",
+		"format-on": "{controller_alias}",
+		"format-connected": "  {device_alias}",
+		"tooltip-format-on": "Controller: {controller_alias}\nAddress: {controller_address}",
+		"tooltip-format-connected": "Device: {device_alias}\nBattery: {device_battery_percentage}%\nAddress: {device_address}"
+	},
+	"wireplumber": {
+		"format": "{icon}  {volume}%",
+		"format-muted": "muted",
+		"format-icons": ["", "", ""]
+	},
+	"network": {
+		"format": "  {ipaddr}",
+		"format-disconnected": "N\\A",
+		"tooltip-format": "Interface: {ifname}\nIp: {ipaddr}\nGateway: {gwaddr}\nSSID: {essid}\nFrequency: {frequency} GHz\nSignal Strength: {signalStrength} dBm"
+	},
+	"cpu": {
+		"format": "  {usage}%",
+		"interval": 2
+	},
+	"memory": {
+		"format": "  {percentage}%",
+		"tooltip-format": "Usage: {used} GiB\nSwap Usage: {swapUsed} GiB",
+		"interval": 2
+	},
+	"clock": {
+		"format": "{:%A, %b %d, %Y at %I:%M %p}",
+		"tooltip-format": "{:%x}"
+	},
+	"group/system-options": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 500,
+			"children-class": "system-options",
+			"transition-left-to-right": false,
+		},
+		"modules": [
+			"custom/menu-button",
+			"custom/reboot",
+			"custom/poweroff"
+		],
+	},
+	
+	// Group/system-options modules
+	"custom/menu-button": {
+		"format": "<span font=\"fontawesome-regular\"></span>",
+		"tooltip": false,
+	},
+	"custom/poweroff": {
+		"format": "<span font=\"fontawesome-regular\"></span>",
+		"tooltip": false,
+		"on-click": "poweroff"
+	},
+	"custom/reboot": {
+		"format": "<span font=\"fontawesome-regular\"></span>",
+		"tooltip": false,
+		"on-click": "reboot"
+	}
+}
+
