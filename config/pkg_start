@@ -1,0 +1,3 @@
+# Edit to change the package manager used for install
+# Default: Archlinux pacman
+sudo pacman -S --needed

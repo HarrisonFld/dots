@@ -34,7 +34,27 @@ if [[ "${INCLUDE_DIRS_UNIQUE,,}" = "y" ]]; then
 	FINAL_DIRS_LIST="${CONFIG_STOW} ${DIRS_UNIQUE}"
 fi
 
-# TODO: Package requirements!
+# Add package requirements from each config directory into a list
+PKGS=""
+for confdir in $FINAL_DIRS_LIST
+do
+	PKG_LIST="${CFGDIR}/${confdir}/pkg_list"
+	if ! [ -f $PKG_LIST ]; then
+		echo $PKG_LIST does not exist, continuing...
+		continue
+	fi
+	PKGS="${PKGS} $(cat $PKG_LIST)"
+done
+
+# Install packages
+PKG_START="${CFGDIR}/pkg_start"
+
+if ! [ -f $PKG_START ]; then
+	error_exit file $PKG_START does not exist
+fi
+
+PKG_MANAGER="$(grep -v '^#' $PKG_START)"
+$PKG_MANAGER $PKGS
 
 for conf in $FINAL_DIRS_LIST
 do
