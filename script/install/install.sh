@@ -50,7 +50,7 @@ done
 PKG_START="${CFGDIR}/pkg_start"
 
 if ! [ -f $PKG_START ]; then
-	error_exit file $PKG_START does not exist
+	error_exit "file $PKG_START does not exist"
 fi
 
 PKG_MANAGER="$(grep -v '^#' $PKG_START)"
