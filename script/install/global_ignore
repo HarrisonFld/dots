@@ -1,0 +1,3 @@
+# specify any files that should be ignored across all the config, by the stow command
+pkg_list
+.stow-local-ignore.og

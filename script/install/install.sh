@@ -58,5 +58,20 @@ $PKG_MANAGER $PKGS
 
 for conf in $FINAL_DIRS_LIST
 do
+	CURRENT_CONF_DIR=${CFGDIR}/${conf}
+
+	# Move the original stow-ignore to a .bak
+	if [ -f $CURRENT_CONF_DIR/.stow-local-ignore ]; then
+		cp ${CURRENT_CONF_DIR}/.stow-local-ignore ${CURRENT_CONF_DIR}/.stow-local-ignore.og  	
+	fi
+	# Add the global_ignore to the original
+	cat ${SCRIPT_DIR}/global_ignore >> ${CURRENT_CONF_DIR}/.stow-local-ignore
+	# Stow
 	$DOTS_MANAGER -d ${CFGDIR} ${conf}
+	# Delete the combined used and move the original back
+	rm -f ${CURRENT_CONF_DIR}/.stow-local-ignore
+	if [ -f ${CURRENT_CONF_DIR}/.stow-local-ignore.og ]; then
+		mv ${CURRENT_CONF_DIR}/.stow-local-ignore.og ${CURRENT_CONF_DIR}/.stow-local-ignore
+	fi
+	
 done
