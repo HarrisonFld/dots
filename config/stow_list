@@ -2,3 +2,4 @@
 # Do not include spaces, comment out directories that should be ignored during install
 bash
 waybar
+river

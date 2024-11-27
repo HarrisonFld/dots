@@ -10,29 +10,42 @@
 }
 
 box.horizontal:dir(ltr) {
-	padding: 1 10px;
+	padding: 1 5px;
 }
 
 window#waybar {
 	background: @theme_bg_color;
 }
 
-/* Left-modules */
-#workspaces {
+/* left-modules */
+#tags {
 	padding: 0 0px;
 }
 
-#workspaces button {
-	padding: 0 5px;
+#tags button {
+	padding: 0 0px;
 	background-color: transparent;
+	min-height: 10px;
 }
 
-#workspaces button.visible {
+#tags button.focused {
 	/*lightens the text color by 60%*/
 	color: shade(@theme_text_color, 1.6);
 }
 
-/* Right modules */
+#tags button:not(.occupied):not(.focused) {
+	font-size: 0;
+	min-width: 0;
+	min-height: 0;
+	margin: 0px;
+	padding: 0;
+	border: 0;
+	opacity: 0;
+	box-shadow: none;
+	background-color: transparent;
+}
+
+/* right modules */
 #system-options {
 	padding: 0;
 }

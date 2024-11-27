@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# User specific variables
+TERMINAL="alacritty"
+MENU="wofi"
+LOCKER="hyprlock"
+MOD="Super"
+
+# River specific variables
+QM="riverctl map" #Quick Map
+QS="riverctl spawn" #Quick Spawn
+QP="riverctl map-pointer" # Quick Map Pointer
+QL="riverctl send-layout-cmd" #Quick Layout Command
+DIREC_KEYS=("Left" "Right" "Up" "Down") #If changed keep the same format (Left, Right, Up, Down)
+
+# Call on startup programs
+$QS waybar
+$QS kanshi
+$QS "swww-daemon ;swww img ~/Desktop/CUR_BACKGROUND --transition-duration 0" 
+
+# User specific keybindings
+$QM normal $MOD Return spawn $TERMINAL
+$QM normal $MOD R spawn $MENU
+$QM normal $MOD L spawn $LOCKER
+
+$QM normal $MOD+Shift Q close
+$QM normal $MOD F toggle-fullscreen
+$QM normal $MOD+Shift F toggle-float
+
+$QP normal Super BTN_RIGHT resize-view
+$QP normal Super BTN_LEFT move-view
+$QP normal Super BTN_MIDDLE toggle-float
+
+# Volume control
+$QM normal None XF86AudioRaiseVolume spawn "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+$QM normal None XF86AudioLowerVolume spawn "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
+$QM normal None XF86AudioMute spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+$QM normal None XF86AudioMicMute spawn "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+# Brightness control
+$QM normal None XF86MonBrightnessUp spawn "brightnessctl set 10%+"
+$QM normal None XF86MonBrightnessDown spawn "brightnessctl set 10%+"
+
+# Multimedia Control
+$QM normal None XF86AudioNext spawn "playerctl next"
+$QM normal None XF86AudioPrev spawn "playerctl previous"
+$QM normal None XF86AudioPause spawn "playerctl play-pause"
+$QM normal None XF86AudioPlay spawn "playerctl play-pause"
+
+# Set tags in the form of workspaces
+for i in $(seq 1 9); do
+    tagmask=$((1 << ($i - 1))) # Don't ask me how this all works; I don't know.
+    $QM normal $MOD $i set-focused-tags $tagmask # Change workspace
+    $QM normal $MOD+Shift $i set-view-tags $tagmask # Move window to another workspace
+    $QM normal $MOD+Control $i toggle-focused-tags $tagmask # Allow multiple windows in one workspace
+done
+$QM normal $MOD+Control W focus-previous-tags
+
+# Set directional actions
+for DIREC in "${DIREC_KEYS[@]}"; do
+	$QM normal $MOD $DIREC focus-view ${DIREC,,}
+	$QM normal $MOD+Shift $DIREC swap ${DIREC,,}
+	$QM normal $MOD+Shift+Control $DIREC send-to-output ${DIREC,,}
+	$QM normal $MOD+Control $DIREC focus-output ${DIREC,,}
+done
+
+# Specify decorations
+riverctl background-color 0xB5E8E0
+riverctl border-color-focused 0xBBBBBB
+riverctl border-color-unfocused 0x333333
+riverctl border-width 2
+
+# Specify layout configuration
+# Set layout (Make sure its installed!) (Default = rivertile) 
+LAYOUT="rivertile"
+
+$QS "$LAYOUT -outer-padding 0 -view-padding 0"
+riverctl default-layout $LAYOUT
+$QL $LAYOUT "main-location left"
+$QL $LAYOUT "main-count 1"
+$QL $LAYOUT "main-ratio 0.55"
+riverctl focus-follows-cursor normal
+riverctl set-cursor-warp on-output-change
+riverctl default-attach-mode bottom
+
+

@@ -1,14 +1,15 @@
-// Waybar configuration for dotfiles 
+// waybar configuration for dotfiles 
 // requires font-awesome
+//
+// Written by HarrisonFld
 
 {
 	"mode": "dock",
 	"spacing": 10,
 	"modules-left": [
-		"sway/workspaces", 
+		"river/tags",
 		"tray"
 	],
-	"modules-center": ["sway/mode"],
 	"modules-right": [
 		"bluetooth", 
 		"wireplumber", 
@@ -19,21 +20,21 @@
 		"group/system-options"
 	],
 
-	// Modules-left
-	"sway/workspaces": {
+	//modules-left
+	/*
+	"wlr/workspaces": {
 		"format": "{name}"
 	},
+	*/
+	"river/tags": {
+		"num-tags": 9
+	},
 	"tray": {
-		"format": "{}",
+		"format": "",
 		"spacing": 20
 	},
 
-	// Modules-center
-	"sway/mode": {
-		"format": "{}"
-	},
-
-	// Modules-right
+	//modules-right
 	"bluetooth": {
 		"format": "{}",
 		"format-on": "{controller_alias}",
@@ -78,7 +79,7 @@
 		],
 	},
 	
-	// Group/system-options modules
+	// group/system-options modules
 	"custom/menu-button": {
 		"format": "<span font=\"fontawesome-regular\"></span>",
 		"tooltip": false,
