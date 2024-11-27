@@ -2,7 +2,7 @@
 
 # User specific variables
 TERMINAL="alacritty"
-MENU="wofi"
+MENU="wofi --show drun"
 LOCKER="hyprlock"
 MOD="Super"
 
@@ -16,12 +16,12 @@ DIREC_KEYS=("Left" "Right" "Up" "Down") #If changed keep the same format (Left, 
 # Call on startup programs
 $QS waybar
 $QS kanshi
-$QS "swww-daemon ;swww img ~/Desktop/CUR_BACKGROUND --transition-duration 0" 
+$QS "swww-daemon ; swww img ~/Desktop/CUR_BACKGROUND --transition-step 255" 
 
 # User specific keybindings
-$QM normal $MOD Return spawn $TERMINAL
-$QM normal $MOD R spawn $MENU
-$QM normal $MOD L spawn $LOCKER
+$QM normal $MOD Return spawn "$TERMINAL"
+$QM normal $MOD R spawn "$MENU"
+$QM normal $MOD L spawn "$LOCKER"
 
 $QM normal $MOD+Shift Q close
 $QM normal $MOD F toggle-fullscreen
