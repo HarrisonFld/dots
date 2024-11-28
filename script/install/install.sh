@@ -6,7 +6,7 @@ error_exit() {
 }
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-DOTS_MANAGER="stow -t $HOME --no-folding --verbose=1"
+DOTS_MANAGER="stow -t $HOME --no-folding --verbose=1 --dotfiles"
 CFGDIR="$SCRIPT_DIR/../../config"
 
 # Check for directories in config/
