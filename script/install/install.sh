@@ -60,12 +60,35 @@ for conf in $FINAL_DIRS_LIST
 do
 	CURRENT_CONF_DIR=${CFGDIR}/${conf}
 
+	# Copy specified files instead of stowing
+	if [ -f $SCRIPT_DIR/global_copy ]; then
+		for copy in $(grep -v '^#' $SCRIPT_DIR/global_copy)
+		do
+			OGCOPIES=$(find $CURRENT_CONF_DIR -name $copy)
+			# Check if the string is empty
+			if [ -z $OGCOPIES ]; then
+				continue
+			fi
+			COPIES=$(echo $OGCOPIES | sed "s|${CURRENT_CONF_DIR}/||" | sed "s|dot-|.|")
+			for i in "${!COPIES[@]}"
+			do
+				if [ -f ${OGCOPIES[i]} ]; then
+					error_exit "file ${SCRIPT_DIR}/global_copy specifies file ${OGCOPIES[i]}, only directories are allowed"
+				fi
+				mkdir -p ~/${COPIES[$i]}
+				cp -n ${OGCOPIES[i]}/* ~/${COPIES[$i]}
+			done
+		done
+	fi
+	
 	# Move the original stow-ignore to a .bak
 	if [ -f $CURRENT_CONF_DIR/.stow-local-ignore ]; then
 		cp ${CURRENT_CONF_DIR}/.stow-local-ignore ${CURRENT_CONF_DIR}/.stow-local-ignore.og  	
 	fi
 	# Add the global_ignore to the original
 	cat ${SCRIPT_DIR}/global_ignore >> ${CURRENT_CONF_DIR}/.stow-local-ignore
+	# Add the copied files to the original
+	echo ${COPIES} >> ${CURRENT_CONF_DIR}/.stow-local-ignore
 	# Stow
 	$DOTS_MANAGER -d ${CFGDIR} ${conf}
 	# Delete the combined used and move the original back

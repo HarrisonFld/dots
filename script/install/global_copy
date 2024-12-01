@@ -1,0 +1,2 @@
+# Specify (ONLY) directories that shouldn't be symlinked; but rather copied
+Desktop
