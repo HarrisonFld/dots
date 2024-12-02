@@ -1,0 +1,47 @@
+*{
+    font-family: HackNerdFont;
+    letter-spacing: -1px;
+}
+
+window {
+    background-color: @theme_bg_color;
+}
+
+#input {
+    margin: 5px;
+    border-radius: 0px;
+    border: none;
+    border-bottom: 3px solid @borders;
+    background-color: @theme_base_color;
+    color: @theme_text_color;
+}
+
+#inner-box {
+    background-color: shade(@theme_bg_color, 1.2);
+
+}
+
+#outer-box {
+    margin: 5px;
+    padding:20px;
+    background-color: @theme_bg_color;
+}
+
+#scroll {
+}
+
+#text {
+    padding: 5px;
+    color: @theme_text_color;
+}
+
+#entry:nth-child(even){
+    background-color: @theme_bg_color;
+}
+
+#entry:selected {
+    background-color: @theme_bg_color;
+}
+
+#text:selected {
+}
