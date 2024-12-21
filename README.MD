@@ -10,5 +10,5 @@ Simple dots that use GNU Stow to install and symlink the files
 ## Notes
 - Anything that varies based on the user/machine should be a configurable file in ~/Desktop/
 - Changing the package manager will most likely require the changing of pkg_list in each config
-- The install doesn't currently have the ability to install both pacman and AUR packages
+- The install doesn't currently have the ability to use more than one package manager (no AUR packages)
 
