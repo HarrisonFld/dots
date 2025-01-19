@@ -7,5 +7,6 @@ require("lsp")
 require("colorscheme")
 
 --config
+require("config.lualine")
 require("config.treesitter")
 require("config.todo-comments")

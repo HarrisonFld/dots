@@ -8,6 +8,7 @@ Plug('gruvbox-community/gruvbox')
 Plug('scrooloose/nerdtree')
 Plug('honza/vim-snippets')
 Plug('ryanoasis/vim-devicons')
+Plug('nvim-lualine/lualine.nvim')
 
 Plug('nvim-lua/plenary.nvim')
 Plug('folke/todo-comments.nvim')
