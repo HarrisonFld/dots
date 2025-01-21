@@ -21,7 +21,7 @@ $QS "swww-daemon ; swww img ~/Desktop/CUR_BACKGROUND --transition-step 255"
 # User specific keybindings
 $QM normal $MOD Return spawn "$TERMINAL"
 $QM normal $MOD R spawn "$MENU"
-$QM normal $MOD L spawn "$LOCKER"
+$QM normal $MOD L spawn "playerctl --all-players pause; $LOCKER"
 
 $QM normal $MOD+Shift Q close
 $QM normal $MOD F toggle-fullscreen
