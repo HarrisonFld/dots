@@ -1,13 +1,12 @@
 local lsps = {
-   'pylsp',
+    'pylsp',
     'lua_ls',
     'rust_analyzer',
     'bashls',
     'clangd',
     'neocmake',
     'ast_grep',
-    'dockerls',
-    'harper_ls'
+    'dockerls'
 }
 
 require('mason').setup()
