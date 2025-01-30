@@ -17,4 +17,6 @@ Plug("williamboman/mason.nvim")
 Plug("williamboman/mason-lspconfig.nvim")
 Plug("neovim/nvim-lspconfig")
 
+Plug("MeanderingProgrammer/render-markdown.nvim")
+
 vim.call('plug#end')
