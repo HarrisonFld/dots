@@ -1,11 +1,10 @@
 # List of directories (in the current config/ directory) that will be used in the symlink creation during install
 # Do not include spaces, comment out directories that should be ignored during install
-bash
+wayfire
 waybar
-river
+bash
 hyprlock
 kanshi
 alacritty
 wofi
-nvim
 starship
