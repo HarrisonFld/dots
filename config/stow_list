@@ -2,7 +2,7 @@
 # Do not include spaces, comment out directories that should be ignored during install
 wayfire
 waybar
-bash
+home
 hyprlock
 kanshi
 alacritty
